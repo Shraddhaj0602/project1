@@ -1,0 +1,21 @@
+exp-4
+
+sudo su –  
+yum update -y 
+yum install -y httpd 
+systemctl status httpd 
+mkdir aws_assg4 
+cd aws_assg4 
+wget h ps://github.com/Rohitjadhav5/Por olio.git 
+ls -lrt 
+wget h ps://github.com/Rohitjadhav5/Por olio/archive/refs/heads/main.zip 
+ls -lrt 
+unzip main.zip 
+ls -lrt 
+cd Grocery-Store-main 
+ls -lrt 
+mv * /var/www/html/ 
+cd /var/www/html 
+systemctl status httpd 
+systemctl enable httpd 
+systemctl start httpd 
