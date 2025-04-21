@@ -1,0 +1,46 @@
+exp8
+
+sudo apt install wsl
+sudo apt install ansible -y
+ansible --version
+mkdir ansible
+cd ansible
+touch host.ini
+nano host.ini
+
+[webservers]
+(ip address ) ansible_user=ubuntu ansible_ssh_private_key_file=(path of ansible key from home) 
+
+touch install_nginx.yml
+nano install_nginx.yml
+
+- name: Install Nginx on AWS EC2
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+sudo apt update
+
+ansible -i host.ini webservers -m ping
+
+chmod 400 "assng-8-key.pem"
+
+ansible-playbook -i host.ini install_nginx.yml
+
+
+
